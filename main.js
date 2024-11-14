@@ -1,7 +1,8 @@
+import Os from "./src/Os"
+
 const canvas = document.getElementById("canvas")
-const ctx = canvas.getContext("2d")
+export const ctx = canvas.getContext("2d")
+canvas.height = window.innerHeight
+canvas.width = window.innerWidth
 
-canvas.height = document.documentElement.clientHeight
-canvas.width = document.documentElement.clientWidth
-
-ctx.fillRect(10, 10, 150, 100)
+Os.start()
