@@ -1,11 +1,12 @@
 import { ctx, canvas } from "../main"
 
 export default class Icon {
-  constructor(x, y, w, h) {
+  constructor(x, y, w, h, name) {
     this.x = x
     this.y = y
     this.w = w
     this.h = h
+    this.name = name
 
     this.isDragging = false
     this.offsetX = 0
@@ -15,8 +16,18 @@ export default class Icon {
   }
 
   draw() {
-    ctx.fillStyle = "blue"
-    ctx.fillRect(this.x, this.y, this.w, this.h)
+    ctx.strokeStyle = "blue"
+    ctx.strokeRect(this.x, this.y, this.w, this.h)
+
+    const text = this.name
+    ctx.font = "10px Arial"
+    ctx.fillStyle = "#000"
+    ctx.textAlign = "center"
+    ctx.textBaseline = "middle"
+
+    const textX = this.x + this.w / 2
+    const textY = this.y + this.h / 2
+    ctx.fillText(text, textX, textY)
   }
 
   isMouseOver(mx, my) {

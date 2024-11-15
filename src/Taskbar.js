@@ -13,7 +13,7 @@ export default class Taskbar {
     ctx.fillRect(0, canvas.height - taskbarHeight, canvas.width, taskbarHeight)
 
     ctx.fillStyle = startButtonColor
-    ctx.fillRect(10, canvas.height - taskbarHeight + 12, iconSize, iconSize)
+    ctx.fillRect(10, canvas.height - taskbarHeight + 13, iconSize, iconSize)
 
     ctx.fillStyle = iconColor
     for (let i = 1; i <= 5; i++) {
