@@ -16,17 +16,19 @@ export default class Icon {
   }
 
   draw() {
+    ctx.fillStyle = "lightblue"
+    ctx.fillRect(this.x, this.y, this.w, this.h)
     ctx.strokeStyle = "blue"
     ctx.strokeRect(this.x, this.y, this.w, this.h)
 
     const text = this.name
-    ctx.font = "10px Arial"
+    ctx.font = "12px Arial"
     ctx.fillStyle = "#000"
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
 
     const textX = this.x + this.w / 2
-    const textY = this.y + this.h / 2
+    const textY = this.y + this.h + 10
     ctx.fillText(text, textX, textY)
   }
 
