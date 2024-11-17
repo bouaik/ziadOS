@@ -17,6 +17,7 @@ export default class Os {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
     Desktop.icons.forEach((icon) => icon.draw())
+    Desktop.windows.forEach((win) => win.draw())
     Taskbar.start()
 
     requestAnimationFrame(() => this.animate())

@@ -1,12 +1,15 @@
 import { ctx, canvas } from "../main"
+import Desktop from "./Desktop"
+import Window from "./Window"
 
 export default class Icon {
-  constructor(x, y, w, h, name) {
+  constructor(x, y, w, h, label, id) {
     this.x = x
     this.y = y
     this.w = w
     this.h = h
-    this.name = name
+    this.label = label
+    this.id = id
 
     this.isDragging = false
     this.offsetX = 0
@@ -21,7 +24,7 @@ export default class Icon {
     ctx.strokeStyle = "blue"
     ctx.strokeRect(this.x, this.y, this.w, this.h)
 
-    const text = this.name
+    const text = this.label
     ctx.font = "12px Arial"
     ctx.fillStyle = "#000"
     ctx.textAlign = "center"
@@ -39,6 +42,23 @@ export default class Icon {
       my >= this.y &&
       my <= this.y + this.h
     )
+  }
+
+  handleDoubleClick(icon) {
+    const existingWindow = Desktop.windows.find(
+      (win) => win.id === `win_${icon.id}`
+    )
+    if (!existingWindow) {
+      const newWindow = new Window(
+        200,
+        100,
+        300,
+        200,
+        icon.label,
+        `win_${icon.id}`
+      )
+      Desktop.windows.push(newWindow)
+    }
   }
 
   addMouseListeners() {
@@ -67,6 +87,20 @@ export default class Icon {
 
     canvas.addEventListener("mouseup", () => {
       this.isDragging = false
+    })
+
+    canvas.addEventListener("dblclick", (e) => {
+      const { offsetX, offsetY } = e
+      const clickedIcon = Desktop.icons.find(
+        (icon) =>
+          offsetX >= icon.x &&
+          offsetX <= icon.x + icon.w &&
+          offsetY >= icon.y &&
+          offsetY <= icon.y + icon.h
+      )
+      if (clickedIcon) {
+        this.handleDoubleClick(clickedIcon)
+      }
     })
   }
 }
