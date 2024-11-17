@@ -11,6 +11,8 @@ export default class Window {
   }
 
   draw() {
+    const closeButtonSize = 20
+    const resizeHandleSize = 10
     ctx.fillStyle = "#fff"
     ctx.fillRect(this.x, this.y, this.w, this.h)
     ctx.strokeStyle = "#000"
@@ -21,27 +23,27 @@ export default class Window {
     ctx.textAlign = "start"
     ctx.fillText(this.title, this.x + 5, this.y + 20)
 
-    // ctx.fillStyle = "red"
-    // ctx.fillRect(
-    //   this.x + this.width - closeButtonSize - 5,
-    //   this.y + 5,
-    //   closeButtonSize,
-    //   closeButtonSize
-    // )
-    // ctx.fillStyle = "white"
-    // ctx.font = "14px Arial"
-    // ctx.fillText(
-    //   "X",
-    //   this.x + this.width - closeButtonSize + 2,
-    //   this.y + closeButtonSize - 2
-    // )
+    ctx.strokeStyle = "#000"
+    ctx.strokeRect(
+      this.x + this.w - closeButtonSize - 5,
+      this.y + 5,
+      closeButtonSize,
+      closeButtonSize
+    )
+    ctx.fillStyle = "#000"
+    ctx.font = "14px Arial"
+    ctx.fillText(
+      "X",
+      this.x + this.w - closeButtonSize + 1,
+      this.y + closeButtonSize - 3
+    )
 
-    // ctx.fillStyle = "gray"
-    // ctx.fillRect(
-    //   this.x + this.width - resizeHandleSize,
-    //   this.y + this.height - resizeHandleSize,
-    //   resizeHandleSize,
-    //   resizeHandleSize
-    // )
+    ctx.fillStyle = "gray"
+    ctx.fillRect(
+      this.x + this.w - resizeHandleSize,
+      this.y + this.h - resizeHandleSize,
+      resizeHandleSize,
+      resizeHandleSize
+    )
   }
 }
